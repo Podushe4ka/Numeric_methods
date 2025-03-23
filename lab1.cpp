@@ -20,18 +20,11 @@ std::vector<mpq_class> compute_taylor_coefficients(int order) {
 }
 
 void approximation(std::vector<mpq_class> &F, std::vector<mpq_class> &Pm, std::vector<mpq_class> &Qn, int m, int n) {
-    std::vector<mpq_class> A(m + n + 1, 0);
-    std::vector<mpq_class> B(n + 1, 0);
-    
-    for (int i = 0; i <= m + n; ++i) {
-        A[i] = F[i];
-    }
-    
     Qn.assign(n + 1, 0);
     Qn[0] = 1;
     
     for (int k = 1; k <= n; ++k) {
-        Qn[k] = -A[m + k] / A[m];
+        Qn[k] = -F[m + k] / F[m];
     }
     
     Pm.assign(m + 1, 0);
